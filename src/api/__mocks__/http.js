@@ -1,7 +1,11 @@
 // ./api/__mocks__/http.fake.js
 // 直接读取本地假数据
-const util = require('../../util');
-export default function http({ url = '', data = {}, method = 'get', statusCode = 200 }) {
+let statusCode;
+export function setStatus(code) {
+  statusCode = code;
+}
+
+export default function http({ url = '', data = {}, method = 'get' }) {
   return new Promise((resolve, reject) => {
     const lastSlash = url.lastIndexOf('/');
     const module = url.substring(lastSlash + 1);
@@ -12,6 +16,6 @@ export default function http({ url = '', data = {}, method = 'get', statusCode =
     }
     const result = mockData[mockDataKey];
 
-    process.nextTick(() => (result ? resolve(result) : reject('error')));
+    process.nextTick(() => (statusCode === 200 ? resolve(result) : reject(result)));
   });
 }
