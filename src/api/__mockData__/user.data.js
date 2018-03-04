@@ -8,6 +8,14 @@ export default {
       age: 18
     }
   },
+  "GET 200 ERROR": {
+    code: 0,
+    msg: "ok",
+    data: {
+      username: "Kodo",
+      age: 15
+    }
+  },
   "POST 200": {
     code: 0,
     msg: "xxx"
