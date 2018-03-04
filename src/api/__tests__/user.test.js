@@ -1,15 +1,15 @@
 jest.mock("../http");
-import http from "../http";
+import http, { setStatus  }from "../http";
 import initUserData from '../../service/someNeedTest';
 
 // api mock test
 describe("user api test", () => {
   const url = "xxx.yyy.com/user";
+  setStatus(200);
   it("user GET should be 200", async () => {
     const result = await http({
       url,
       method : "get",
-      statusCode : 200
     });
     expect(result.data.username).toBe("Kodo");
   });
@@ -18,7 +18,6 @@ describe("user api test", () => {
     const result = await http({
       url,
       method : "post",
-      statusCode : 200
     });
     expect(result.code).toBe(0);
   });
@@ -29,7 +28,6 @@ describe("user api test", () => {
       await http({
         url,
         method : "get",
-        statusCode : 400
       });
     } catch (e) {
       expect(e.msg).toBe("invald params");
@@ -43,8 +41,17 @@ describe('service initUserData test', () => {
   
   it("if user age is 18, age should be 19", async () => {
     expect.assertions(1);
+    setStatus(200);
     const result = await initUserData();
+    // console.log(result);
     expect(result.data.age).toBe(19);
+  });
+  
+  it("initUserData 400", async () => {
+    expect.assertions(1);
+    setStatus(400);
+    const result = await initUserData();
+    expect(result.msg).toBe('invald params');
   });
   
 });
