@@ -5,6 +5,9 @@ export default function http({ url = "", method = "get", statusCode = 200 }) {
     const lastSlash = url.lastIndexOf("/");
     const module = url.substring(lastSlash + 1);
     const mockData = require(`../__mockData__/${module}.data`).default;
-    resolve(mockData[`${method.toUpperCase()} ${statusCode}`]);
+    
+    const result = mockData[`${method.toUpperCase()} ${statusCode}`];
+    
+    statusCode === 200 ? resolve(result) : reject(result);
   });
 }
