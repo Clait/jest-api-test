@@ -1,3 +1,3 @@
-export default function http({ url, method, statusCode = 200 }) {
+export default function http(url, method) {
   return "real http";
 }

@@ -31,7 +31,7 @@ describe("user api test", () => {
         method : "get",
         statusCode : 400
       });
-    } catch(e) {
+    } catch (e) {
       expect(e.msg).toBe("invald params");
     }
   });
@@ -42,12 +42,13 @@ describe("user api test", () => {
 describe('service initUserData test', () => {
   
   it("if user age is 18, age should be 19", async () => {
-    try {
-      const result = await initUserData();
-      expect(result.data.age).toBe(19);
-    } catch(e) {
-      expect(e).toBe('error');
-    }
+    const result = await initUserData();
+    expect(result.data.age).toBe(19);
+  });
+  
+  it("if user age is 18, age should be error", async () => {
+    expect.assertions(1);
+    return expect(http({url: '/user'})).rejects.toBe('error');
   });
   
 });

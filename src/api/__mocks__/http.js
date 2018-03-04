@@ -8,6 +8,6 @@ export default function http({ url = "", method = "get", statusCode = 200 }) {
     
     const result = mockData[`${method.toUpperCase()} ${statusCode}`];
     
-    statusCode === 200 ? resolve(result) : reject(result);
+    process.nextTick(() => result ? resolve(result) : reject('error'));
   });
 }
