@@ -1,14 +1,12 @@
 // Define test mode, default is ''
-let testMode = ''; 
+let errorMode = false;
 
 const util = {
   set useErrorMode(v) {
-    if (v) {
-      testMode = 'error';
-    }
+    errorMode = v;
   },
   get useErrorMode() {
-    return testMode;
+    return errorMode;
   }
 };
 
