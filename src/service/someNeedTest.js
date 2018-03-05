@@ -1,4 +1,4 @@
-import getUser from '../api/user';
+import getUser from "../api/user";
 
 export default async function initUserData() {
   try {
@@ -8,8 +8,8 @@ export default async function initUserData() {
     if (user.data.age === 18) {
       user.data.age += 1;
     }
-    
-    return user;
+
+    return user; // age 19
   } catch (e) {
     return e;
   }
