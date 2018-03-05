@@ -5,8 +5,9 @@ import initUserData from "../../service/someNeedTest";
 // api mock test
 describe("user api test", () => {
   const url = "xxx.yyy.com/user";
-  setStatus(200);
   it("user GET should be 200", async () => {
+    setStatus(200);
+
     const result = await http({
       url,
       method: "get"
@@ -15,6 +16,8 @@ describe("user api test", () => {
   });
 
   it("user POST should be 200", async () => {
+    setStatus(200);
+
     const result = await http({
       url,
       method: "post"
@@ -22,8 +25,9 @@ describe("user api test", () => {
     expect(result.code).toBe(0);
   });
 
-  it("user GET should be 200", async () => {
+  it("user GET should be 400", async () => {
     // test api reject
+    setStatus(400);
     try {
       await http({
         url,
